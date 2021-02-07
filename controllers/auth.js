@@ -87,3 +87,9 @@ exports.login = (req, res) => {
       });
    });
 };
+
+exports.profile = (req, res) => {
+   return res.json({
+      user: req.user,
+   });
+};

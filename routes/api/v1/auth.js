@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
-const authController = require('../../../controllers/auth');
-
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-require('dotenv/config');
-const key = process.env.APP_SECRET;
 const User = require('../../../models/User');
+const authController = require('../../../controllers/auth');
+const passport = require('passport');
 const { check, body } = require('express-validator');
 
 /**
@@ -104,10 +98,6 @@ router.post(
 router.get(
    '/profile',
    passport.authenticate('jwt', { session: false }),
-   (req, res) => {
-      return res.json({
-         user: req.user,
-      });
-   }
+   authController.profile
 );
 module.exports = router;
