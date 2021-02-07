@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 require('dotenv/config');
 const key = process.env.APP_SECRET;
-const User = require('../../models/User');
+const User = require('../../../models/User');
 
 /**
  * @route POST api/users/register

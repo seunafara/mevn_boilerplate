@@ -40,10 +40,11 @@ mongoose
 //   return res.send('<h1>Hello</h1>');
 // });
 
-// Bring in the Users route
-const users = require('./routes/api/users');
+// Bring in the routes
+const apiV = 'v1';
+const auth = require(`./routes/api/${apiV}/auth`);
 
-app.use('/api/users', users);
+app.use(`/api/${apiV}/auth`, auth);
 
 app.get('*', (req, res) => {
    res.sendFile(path.join(__dirname, 'public/index.html'));
