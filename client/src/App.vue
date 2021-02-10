@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <div>
-      <router-view />
-    </div>
-  </div>
+   <div id="app">
+      <div>
+         <router-view />
+      </div>
+   </div>
 </template>
 <script>
 export default {};
 </script>
-<style></style>
+<style>
+@import './assets/css/style.css';
+</style>
