@@ -49,13 +49,6 @@ exports.login = (req, res) => {
          });
       }
 
-      if (!user) {
-         return res.status(404).json({
-            message: 'Username not found',
-            success: false,
-         });
-      }
-
       // If there is user we compare the password
       bcrypt.compare(req.body.password, user.password).then((isMatch) => {
          if (isMatch) {
@@ -79,9 +72,15 @@ exports.login = (req, res) => {
                });
             });
          } else {
-            return res.status(404).json({
-               message: 'Incorrect password',
+            let errors = [];
+            let err = {
+               msg: 'Incorrect password',
+               param: 'password',
+            };
+            errors.push(err);
+            return res.status(422).json({
                success: false,
+               errors,
             });
          }
       });

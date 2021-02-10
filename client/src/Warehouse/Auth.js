@@ -18,6 +18,14 @@ const getters = {
    authState: (state) => state.status,
    user: (state) => state.user,
    error: (state) => state.error,
+   setWatcher: (state) => {
+      router.beforeEach((to, from, next) => {
+         console.log(to, from, next, state);
+         console.clear();
+         state.error = null;
+         next();
+      });
+   },
 };
 
 const actions = {
@@ -72,7 +80,7 @@ const actions = {
       try {
          commit('profile_request');
          let res = await axios.get(`${url}/api/${api_version}/auth/profile`);
-         if (res && res.data.success !== undefined) {
+         if (res) {
             commit('user_profile', res.data.user);
             return res;
          }

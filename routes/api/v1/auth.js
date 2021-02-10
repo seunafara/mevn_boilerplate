@@ -79,7 +79,16 @@ router.post(
          .not()
          .isEmpty()
          .trim()
-         .withMessage('Please enter your username'),
+         .withMessage('Please enter your username')
+         .custom((value, { req }) => {
+            return User.findOne({ username: req.body.username }).then(
+               (userDoc) => {
+                  if (!userDoc) {
+                     return Promise.reject('User not found');
+                  }
+               }
+            );
+         }),
       check('password')
          .not()
          .isEmpty()
