@@ -129,7 +129,8 @@ const mutations = {
    logout(state) {
       state.error = null;
       state.status = '';
-      (state.token = ''), (state.user = '');
+      state.token = '';
+      state.user = '';
    },
    profile_request(state) {
       state.status = 'loading';
